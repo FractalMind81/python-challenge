@@ -58,7 +58,22 @@ with open(csv_path, newline='') as csv_file:
     min_change = min(monthly_change)
     min_month = months[monthly_change.index(min_change)]
 
-    # Format output
+    # Prepare file output
+    output_file = open("output.txt","w")
+
+    # Output to file
+    output_file.write("Financial Analysis\n")
+    output_file.write("------------------------------\n")
+    output_file.write("Total Months: " + str(month_count) + "\n")
+    output_file.write("Net Profit: " + "${:,.2f}".format(net_profit) + "\n")
+    output_file.write("Average change: " + "${:,.2f}".format(avg_change) + "\n")
+    output_file.write("Greatest Increase in Profits: " + max_month + " " + "${:,.2f}".format(max_change) + "\n")
+    output_file.write("Greatest Decrease in Profits: " + min_month + " " + "${:,.2f}".format(min_change) + "\n")
+
+    # Close file
+    output_file.close()
+
+    # Output to terminal
     print("Financial Analysis")
     print("------------------------------")
     print("Total Months: " + str(month_count))
@@ -66,3 +81,4 @@ with open(csv_path, newline='') as csv_file:
     print("Average change: " + "${:,.2f}".format(avg_change))
     print("Greatest Increase in Profits: " + max_month + " " + "${:,.2f}".format(max_change))
     print("Greatest Decrease in Profits: " + min_month + " " + "${:,.2f}".format(min_change))
+    
