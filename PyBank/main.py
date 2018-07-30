@@ -1,7 +1,6 @@
 # Import the necessary dependencies for os.path.join() import os import csv 
 import os
 import csv
-import functools
 
 # Initialize variable
 month_count = 0
