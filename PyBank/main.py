@@ -17,14 +17,9 @@ with open(csv_path, newline='') as csv_file:
     # CSV reader specifies delimiter and variable that holds contents
     csv_reader = csv.reader(csv_file, delimiter=',')
 
-    # Check if the csv file has a header row
-    sniffer = csv.Sniffer()
-    contains_hdr = sniffer.has_header(csv_file.read(128))
-
     # This skips the header row of the CSV file.
-    if contains_hdr == True:
-        next(csv_reader,None)
-
+    next(csv_reader,None)
+    
     # Read each row of data after the header
     for row in csv_reader:
 
@@ -81,4 +76,3 @@ with open(csv_path, newline='') as csv_file:
     print("Average change: " + "${:,.2f}".format(avg_change))
     print("Greatest Increase in Profits: " + max_month + " " + "${:,.2f}".format(max_change))
     print("Greatest Decrease in Profits: " + min_month + " " + "${:,.2f}".format(min_change))
-    
