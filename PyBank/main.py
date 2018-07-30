@@ -43,7 +43,7 @@ with open(csv_path, newline='') as csv_file:
     months.pop(0)
 
     # Avergage change 
-    avg_change = sum(item for item in monthly_change)/(month_count-1)
+    avg_change = sum(item for item in monthly_change)/len(monthly_change)
 
     # Max change/month
     max_change = max(monthly_change) 
