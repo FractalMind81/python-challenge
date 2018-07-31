@@ -8,20 +8,20 @@ csv_path = os.path.join("..","PyPoll", "election_data.csv")
 poll_data = pd.read_csv(csv_path)
 
 # Extract poll totals
-poll_totals = poll_data.groupby('Candidate')['Voter ID'].agg(['count']).sort_values(by='count',ascending=False).reset_index()
+poll_totals = poll_data['Candidate'].value_counts()
 
 # Total Votes Cast
-total_votes = poll_totals['count'].sum()
+total_votes = poll_totals.sum()
 
 # Print results to terminal
 print("Election Result")
 print("-------------------------")
 print("Total Votes: " + str(total_votes))
 print("-------------------------")
-for index, row in poll_totals.iterrows():
-    print(row['Candidate'] + ": " + "{:,.3f}".format(100*row['count']/total_votes) + "% (" + str(row['count']) + ")")
+for index_val, series_val in poll_totals.iteritems():
+    print(index_val + ": " + "{:,.3f}".format(100*series_val/total_votes) + "% (" + str(series_val) + ")")
 print("-------------------------")
-print("Winner: " + poll_totals.loc[0,'Candidate'])
+print("Winner: " + poll_totals.index[0])
 
 # Prepare file output
 output_file = open("election_output.txt","w")
@@ -31,10 +31,10 @@ output_file.write("Election Result\n")
 output_file.write("-------------------------\n")
 output_file.write("Total Votes: " + str(total_votes) +"\n")
 output_file.write("-------------------------\n")
-for index, row in poll_totals.iterrows():
-    output_file.write(row['Candidate'] + ": " + "{:,.3f}".format(100*row['count']/total_votes) + "% (" + str(row['count']) + ")\n")
+for index_val, series_val in poll_totals.iteritems():
+    output_file.write(index_val + ": " + "{:,.3f}".format(100*series_val/total_votes) + "% (" + str(series_val) + ")\n")
 output_file.write("-------------------------\n")
-output_file.write("Winner: " + poll_totals.loc[0,'Candidate'] + "\n")
+output_file.write("Winner: " + poll_totals.index[0] + "\n")
 
 # Close file
 output_file.close()
