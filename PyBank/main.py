@@ -54,9 +54,9 @@ with open(csv_path, newline='') as csv_file:
     min_month = months[monthly_change.index(min_change)]
 
     # Prepare file output
-    output_file = open("output.txt","w")
+    output_file = open("financial_analysis.txt","w")
 
-    # Output to file
+    # Output to files
     output_file.write("Financial Analysis\n")
     output_file.write("------------------------------\n")
     output_file.write("Total Months: " + str(month_count) + "\n")
